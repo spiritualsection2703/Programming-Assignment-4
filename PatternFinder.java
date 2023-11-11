@@ -7,88 +7,91 @@ public class PatternFinder {
     private static boolean singletonMiner(String mine, int length) {
     for (int start = 0; start < mine.length() - length; start++) {
         int i;
-        for (i = start + 1; i < start + length; i++)
-            if (mine.charAt(i) != mine.charAt(i - 1))
+        for (i = start + 1; i < start + length; i++) {
+            if (mine.charAt(i) != mine.charAt(i - 1)) {
                 break;
+            }
+        }
         if (i == start + length) {
             System.out.println("Found a Singleton String: " + mine.substring(start, start + length) + " at index " + start);
             return true;
         }
     }
     return false;
-}  
+}
 
     private static void arithmeticStringOrder1(String mine, int length) {
-        for (int i = 0; i <= mine.length() - length; i++) {
-            String subString = mine.substring(i, i + length);
-            boolean isOrder1 = true;
-            for (int j = 1; j < length; j++) {
-                if (subString.charAt(j) != subString.charAt(j - 1) + 1) {
-                    isOrder1 = false;
-                    break;
-                }
-            }
-            if (isOrder1) {
-                System.out.println("Found an Arithmetic String: " + subString + " at index " + i);
+    for (int i = 0; i <= mine.length() - length; i++) {
+        String subString = mine.substring(i, i + length);
+        boolean isOrder1 = true;
+        for (int j = 1; j < length; j++) {
+            if (subString.charAt(j) != subString.charAt(j - 1) + 1) {
+                isOrder1 = false;
                 break;
             }
         }
+        if (isOrder1) {
+            System.out.println("Found an Arithmetic String: " + subString + " at index " + i);
+            break;
+        }
     }
+}
 
-    private static void arithmeticStringOrderMinus1(String mine, int length) {
-        for (int i = 0; i <= mine.length() - length; i++) {
-            String subString = mine.substring(i, i + length);
-            boolean isOrderMinus1 = true;
-            for (int j = 1; j < length; j++) {
-                if (subString.charAt(j) != subString.charAt(j - 1) - 1) {
-                    isOrderMinus1 = false;
-                    break;
-                }
-            }
-            if (isOrderMinus1) {
-                System.out.println("Found an Arithmetic String 2: " + subString + " at index " + i);
+private static void arithmeticStringOrderMinus1(String mine, int length) {
+    for (int i = 0; i <= mine.length() - length; i++) {
+        String subString = mine.substring(i, i + length);
+        boolean isOrderMinus1 = true;
+        for (int j = 1; j < length; j++) {
+            if (subString.charAt(j) != subString.charAt(j - 1) - 1) {
+                isOrderMinus1 = false;
                 break;
             }
         }
+        if (isOrderMinus1) {
+            System.out.println("Found an Arithmetic String 2: " + subString + " at index " + i);
+            break;
+        }
     }
+}
 
-    private static void balancedTripartiteString(String mine, int length) {
-        int partLength = length / 3;
-        for (int i = 0; i <= mine.length() - length; i++) {
-            String subString = mine.substring(i, i + length);
-            String part1 = subString.substring(0, partLength);
-            String part2 = subString.substring(partLength, 2 * partLength);
-            String part3 = subString.substring(2 * partLength, length);
-            if (part1.equals(part2) && part2.equals(part3)) {
-                System.out.println("Found a Balanced Tripartite String: " + subString + " at index " + i);
-                break;
-            }
+private static void balancedTripartiteString(String mine, int length) {
+    int partLength = length / 3;
+    for (int i = 0; i <= mine.length() - length; i++) {
+        String subString = mine.substring(i, i + length);
+        String part1 = subString.substring(0, partLength);
+        String part2 = subString.substring(partLength, 2 * partLength);
+        String part3 = subString.substring(2 * partLength, length);
+        if (part1.equals(part2) && part2.equals(part3)) {
+            System.out.println("Found a Balanced Tripartite String: " + subString + " at index " + i);
+            break;
         }
     }
+}
 
-    private static void balancedBipartiteString(String mine, int length) {
-        int halfLength = length / 2;
-        for (int i = 0; i <= mine.length() - length; i++) {
-            String subString = mine.substring(i, i + length);
-            String firstHalf = subString.substring(0, halfLength);
-            String secondHalf = subString.substring(halfLength, length);
-            if (firstHalf.equals(secondHalf)) {
-                System.out.println("Found a Balanced Bipartite String: " + subString + " at index " + i);
-                break;
-            }
+private static void balancedBipartiteString(String mine, int length) {
+    int halfLength = length / 2;
+    for (int i = 0; i <= mine.length() - length; i++) {
+        String subString = mine.substring(i, i + length);
+        String firstHalf = subString.substring(0, halfLength);
+        String secondHalf = subString.substring(halfLength, length);
+        if (firstHalf.equals(secondHalf)) {
+            System.out.println("Found a Balanced Bipartite String: " + subString + " at index " + i);
+            break;
         }
     }
+}
 
-    private static void palinDrome(String mine, int length) {
-        for (int i = 0; i <= mine.length() - length; i++) {
-            String subString = mine.substring(i, i + length);
-            StringBuilder reversed = new StringBuilder(subString).reverse();
-            if (subString.equals(reversed.toString())) {
-                System.out.println("Found a Palindrome: " + subString + " at index " + i);
-                break;
-            }
+private static void palinDrome(String mine, int length) {
+    for (int i = 0; i <= mine.length() - length; i++) {
+        String subString = mine.substring(i, i + length);
+        StringBuilder reversed = new StringBuilder(subString).reverse();
+        if (subString.equals(reversed.toString())) {
+            System.out.println("Found a Palindrome: " + subString + " at index " + i);
+            break;
         }
     }
+}
+
     
     private static String randomStringGenerator(int length) {
         Random random = new Random(System.nanoTime());
@@ -120,7 +123,7 @@ public class PatternFinder {
             if (patternMaxLength < 3 || patternMaxLength > 15)
                 throw new NumberFormatException();
         } catch (NumberFormatException e) {
-            System.out.println("Invalid input. Try again!");
+            System.out.println("Invalid input!");
             continue;
         }
         break;
@@ -145,6 +148,6 @@ public class PatternFinder {
     }
 } catch (Exception exp) {
     System.out.println(exp.getMessage());
-}
-}
+    }
+    }
 }
