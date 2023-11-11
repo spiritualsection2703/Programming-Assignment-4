@@ -92,6 +92,7 @@ public class PatternFinder {
 
     public static void main(String[] args) {
         Scanner keyboard = new Scanner(System.in);
+        
         // Step 1: handling input...
         int patternMaxLength;
         int randomStringLength;
@@ -121,8 +122,14 @@ public class PatternFinder {
 
         // Step 3: finding the interesting patterns
         try {
-            for (int length = patternMaxLength; length > 0; length--)
+            for (int length = patternMaxLength; length > 0; length--) {
                 singletonMiner(randomString, length);
+                arithmeticStringOrder1(randomString, length);
+                arithmeticStringOrderMinus1(randomString, length);
+                balancedTripartiteString(randomString, length);
+                balancedBipartiteString(randomString, length);
+                palinDrome(randomString, length);
+            }
         } catch (Exception exp) {
             System.out.println(exp.getMessage());
         }
